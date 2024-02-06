@@ -2,8 +2,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ContactTest {
 
@@ -37,6 +36,24 @@ public class ContactTest {
                     () -> assertEquals(testContactName, testContact.getContactName()),
                     () -> assertEquals(testPhoneNumber, testContact.getPhoneNumber()),
                     () -> assertEquals(testEmail, testContact.getEmailAddress()));
+        }
+
+        @Nested
+        @DisplayName("Name tests using Contact")
+        class ContactNameTest {
+            @Test
+            @DisplayName("Constructor throws exception when the name is null")
+            public void testConstructorThrowsExceptionWhenNameIsNull(){
+                // Arrange
+                String testContactName = null;
+                String testPhoneNumber = "0789456123"; // remember to transform the user input(long) into a String
+                String testEmail = "john.doe@gmail.com";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> {
+                    new Contact(testContactName, testPhoneNumber, testEmail);
+                });
+            }
         }
     }
 }
