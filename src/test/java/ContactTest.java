@@ -46,7 +46,49 @@ public class ContactTest {
             public void testConstructorThrowsExceptionWhenNameIsNull(){
                 // Arrange
                 String testContactName = null;
-                String testPhoneNumber = "0789456123"; // remember to transform the user input(long) into a String
+                String testPhoneNumber = "0789456123";
+                String testEmail = "john.doe@gmail.com";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> {
+                    new Contact(testContactName, testPhoneNumber, testEmail);
+                });
+            }
+
+            @Test
+            @DisplayName("Constructor throws exception when the name is empty string")
+            public void testConstructorThrowsExceptionWhenNameIsEmptyString(){
+                // Arrange
+                String testContactName = "";
+                String testPhoneNumber = "0789456123";
+                String testEmail = "john.doe@gmail.com";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> {
+                    new Contact(testContactName, testPhoneNumber, testEmail);
+                });
+            }
+
+            @Test
+            @DisplayName("Constructor throws exception when the name is whitespace")
+            public void testConstructorThrowsExceptionWhenNameIsWhitespace(){
+                // Arrange
+                String testContactName = " ";
+                String testPhoneNumber = "0789456123";
+                String testEmail = "john.doe@gmail.com";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> {
+                    new Contact(testContactName, testPhoneNumber, testEmail);
+                });
+            }
+
+            @Test
+            @DisplayName("Constructor throws exception when the name does not meet pattern")
+            public void testConstructorThrowsExceptionWhenNameDoesNotMeetPattern(){
+                // Arrange
+                String testContactName = "Ab";
+                String testPhoneNumber = "0789456123";
                 String testEmail = "john.doe@gmail.com";
                 // Act
                 // Assert
