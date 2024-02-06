@@ -87,7 +87,7 @@ public class ContactTest {
             @DisplayName("Constructor throws exception when the name does not meet pattern")
             public void testConstructorThrowsExceptionWhenNameDoesNotMeetPattern(){
                 // Arrange
-                String testContactName = "Ab";
+                String testContactName = "Ar";
                 String testPhoneNumber = "0789456123";
                 String testEmail = "john.doe@gmail.com";
                 // Act
