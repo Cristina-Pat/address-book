@@ -33,10 +33,11 @@ public class ContactTest {
             Contact testContact = new Contact(testContactName, testPhoneNumber, testEmail);
 
             //Assert
-            assertAll("Constructor sets values when valid"),
+            assertAll("Constructor sets values when valid",
                     () -> assertEquals(testContactName, testContact.getContactName()),
                     () -> assertEquals(testPhoneNumber, testContact.getPhoneNumber()),
                     () -> assertEquals(testEmail, testContact.getEmailAddress()));
         }
     }
 }
+
