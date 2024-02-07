@@ -7,6 +7,7 @@ public class Contact {
     public Contact(String aContactName, String aPhoneNumber, String anEmailAddress) {
         validateContactName(aContactName);
         validatePhoneNumber(aPhoneNumber);
+        validateEmailAddress(anEmailAddress);
         this.contactName = aContactName;
         this.phoneNumber = aPhoneNumber;
         this.emailAddress = anEmailAddress;
@@ -51,6 +52,13 @@ public class Contact {
         if(!phoneNumber.trim().matches("^07[2-9][0-9]{8}$")){
             throw new IllegalArgumentException("The phone number must start with 07, followed by a digit from " +
                     "2 to 9 and contain a total of 11 digits");}
+    }
+
+    private static void validateEmailAddress(String emailAddress){
+        // validation used from
+        if(!emailAddress.trim().matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z-.]{2,5}$")){
+            throw new IllegalArgumentException("The email address should contain an @ symbol and " +
+                    "end with the domain name (such as gmail) followed by the top-level domain (such as .com)");}
     }
 }
 

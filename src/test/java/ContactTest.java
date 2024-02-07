@@ -26,7 +26,7 @@ public class ContactTest {
             // Arrange
             String testContactName = "John Doe";
             String testPhoneNumber = "07894561231"; // remember to transform the user input(long) into a String
-            String testEmail = "john.doe@gmail.com";
+            String testEmail = "john.doe@hello.co.uk";
 
             // Act
             Contact testContact = new Contact(testContactName, testPhoneNumber, testEmail);
@@ -139,7 +139,7 @@ public class ContactTest {
                 // Arrange
                 String testContactName = "John Doe";
                 String testPhoneNumber = "07894561461";
-                String testEmail = "john.doe@gmail.com";
+                String testEmail = "@gmail.com";
                 // Act
                 // Assert
                 assertThrows(IllegalArgumentException.class, () -> {
