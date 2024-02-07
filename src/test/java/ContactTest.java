@@ -115,6 +115,37 @@ public class ContactTest {
                 });
             }
 
+            @Test
+            @DisplayName("Construct throws exception when phone number is more the 11 characters")
+            public void testConstructorThrowsExceptionWhenPhoneNumberIsMoreThan11() {
+                // Arrange
+                String testContactName = "John Doe";
+                String testPhoneNumber = "07894561465578";
+                String testEmail = "john.doe@gmail.com";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> {
+                    new Contact(testContactName, testPhoneNumber, testEmail);
+                });
+            }
+        }
+
+        @Nested
+        @DisplayName("Email Address Test")
+        class EmailAddressTest {
+            @Test
+            @DisplayName("Construct throws exception when email address does not meet pattern")
+            public void testConstructorThrowsExceptionWhenEmailAddressDoesNotMeetPattern() {
+                // Arrange
+                String testContactName = "John Doe";
+                String testPhoneNumber = "07894561461";
+                String testEmail = "john.doe@gmail.com";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> {
+                    new Contact(testContactName, testPhoneNumber, testEmail);
+                });
+            }
         }
     }
 }
