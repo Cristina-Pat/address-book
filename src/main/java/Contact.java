@@ -48,7 +48,9 @@ public class Contact {
     }
 
     private static void validatePhoneNumber(String phoneNumber){
-
+        if(!phoneNumber.trim().matches("^07[2-9][0-9]{8}$")){
+            throw new IllegalArgumentException("The phone number must start with 07, followed by a digit from " +
+                    "2 to 9 and contain a total of 11 digits");}
     }
 }
 
