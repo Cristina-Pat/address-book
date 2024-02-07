@@ -26,6 +26,10 @@ As an Address Book app user, I want to be able to remove a contact, so that I ca
 **US4**\
 As an Address Book app user, I want to be able to edit the contact's details, so that I can maintain my contact list
 updated. 
+**Tests**
+*Test 1* - When the contact's name is changed, it is displayed accordingly in the contact list.
+*Test 2* - When a contact's phone number is changed, this is displayed accordingly in the contact list.
+*Test 3* - When a contact's email address is changed, this is displayed correctly in the contact list.
 
 **US5**\
 As an Address Book app user,I want the application to prevent duplicated phone numbers or emails to ensure accuracy in
@@ -48,10 +52,12 @@ classDiagram
     -contacts: HashMap<String, Contact> 
     -phoneNumberSet: UniquePhoneNumberSet
     -emailSet: UniqueEmailSet
-    +addContact(contactName: String, phoneNumber: String, emailAddress: String): boolean
+    +addContact(contactName: String, phoneNumber: String, emailAddress: String): void
     +searchContactByName(contactName: String): Contact
-    +removeContact(contactName: String): boolean
-    +editContact(contactName: String, newPhoneNumber: String, newEmailAddress: String): boolean
+    +removeContact(contactName: String): void
+    +editContactName(contactName: String, newContactName: String): void
+    +editContactPhoneNumber(contactName: String, newPhoneNumber: String): void
+    +editContactEmailAddress(contactName: String, newEmailAddress: String): void
     +viewAllContacts(): HashMap<String, Contact>
     %% these are the aditional features
     +searchContactByPhoneNumber(phoneNumber: String): Contact

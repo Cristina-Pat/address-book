@@ -18,6 +18,7 @@ public class Contact {
     }
 
     public void setContactName(String contactName) {
+        validateContactName(contactName);
         this.contactName = contactName;
     }
 
@@ -26,6 +27,7 @@ public class Contact {
     }
 
     public void setPhoneNumber(String phoneNumber) {
+        validatePhoneNumber(phoneNumber);
         this.phoneNumber = phoneNumber;
     }
 
@@ -34,6 +36,7 @@ public class Contact {
     }
 
     public void setEmailAddress(String emailAddress) {
+        validateEmailAddress(emailAddress);
         this.emailAddress = emailAddress;
     }
     private static void validateContactName(String name){
