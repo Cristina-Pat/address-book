@@ -16,10 +16,12 @@ the contacts, each containing a name, phone number and email address.\
 As an Address Book app user, I want to be able to search by a name, so that I can view the contact details associated 
 with this name.
 **Tests**
-*Test 1* - When a name is provided, that contact's details are displayed.
+*Test 1* - When a name is provided, that contact's details are displayed.\
 
 **US3**\
 As an Address Book app user, I want to be able to remove a contact, so that I can maintain my record clean and updated.
+**Tests**
+*Test 1* - When a contact is removed from the list, it no longer appears in the contact list.\
 
 **US4**\
 As an Address Book app user, I want to be able to edit the contact's details, so that I can maintain my contact list

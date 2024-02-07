@@ -37,4 +37,23 @@ public class AddressBookTest {
         // Assert
         assertEquals(johnDoe, actualOutput);
     }
+
+    @Test
+    @DisplayName("When a contact is removed from the list, it no longer appears in the contact list")
+    public void testContactRemove() {
+        // Arrange
+        Contact johnDoe = new Contact("John Doe", "07894561231",
+                "john.doe@hello.co.uk");
+        Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
+                "eva.longoria@gmail.com");
+        AddressBook addressBook = new AddressBook();
+        addressBook.addContact(johnDoe);
+        addressBook.addContact(evaLongoria);
+
+
+        // Act
+        addressBook.removeContact("Eva Longoria");
+        // Assert
+        assertFalse(addressBook.containsContact("Eva Longoria"));
+    }
 }

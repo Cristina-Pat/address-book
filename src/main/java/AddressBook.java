@@ -19,4 +19,8 @@ public class AddressBook {
     public Contact searchContact(String contactName) {
         return this.contacts.get(contactName);
     }
+
+    public void removeContact(String contactName) {
+
+    }
 }
