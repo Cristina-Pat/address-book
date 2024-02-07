@@ -25,7 +25,7 @@ public class ContactTest {
         public void testConstructorSetsValuesWhenValid(){
             // Arrange
             String testContactName = "John Doe";
-            String testPhoneNumber = "0789456123"; // remember to transform the user input(long) into a String
+            String testPhoneNumber = "07894561231"; // remember to transform the user input(long) into a String
             String testEmail = "john.doe@gmail.com";
 
             // Act
@@ -46,7 +46,7 @@ public class ContactTest {
             public void testConstructorThrowsExceptionWhenNameIsNull(){
                 // Arrange
                 String testContactName = null;
-                String testPhoneNumber = "0789456123";
+                String testPhoneNumber = "07894561231";
                 String testEmail = "john.doe@gmail.com";
                 // Act
                 // Assert
@@ -60,7 +60,7 @@ public class ContactTest {
             public void testConstructorThrowsExceptionWhenNameIsEmptyString(){
                 // Arrange
                 String testContactName = "";
-                String testPhoneNumber = "0789456123";
+                String testPhoneNumber = "07894561231";
                 String testEmail = "john.doe@gmail.com";
                 // Act
                 // Assert
@@ -74,7 +74,7 @@ public class ContactTest {
             public void testConstructorThrowsExceptionWhenNameIsWhitespace(){
                 // Arrange
                 String testContactName = " ";
-                String testPhoneNumber = "0789456123";
+                String testPhoneNumber = "07894561231";
                 String testEmail = "john.doe@gmail.com";
                 // Act
                 // Assert
@@ -88,7 +88,7 @@ public class ContactTest {
             public void testConstructorThrowsExceptionWhenNameDoesNotMeetPattern(){
                 // Arrange
                 String testContactName = "Ar";
-                String testPhoneNumber = "0789456123";
+                String testPhoneNumber = "07894561231";
                 String testEmail = "john.doe@gmail.com";
                 // Act
                 // Assert
@@ -96,6 +96,25 @@ public class ContactTest {
                     new Contact(testContactName, testPhoneNumber, testEmail);
                 });
             }
+        }
+
+        @Nested
+        @DisplayName("Phone Number Test")
+        class PhoneNumberTest {
+            @Test
+            @DisplayName("Construct throws exception when phone number is less the 11 characters")
+            public void testConstructorThrowsExceptionWhenPhoneNumberIsLessThan11() {
+                // Arrange
+                String testContactName = "John Doe";
+                String testPhoneNumber = "07894561";
+                String testEmail = "john.doe@gmail.com";
+                // Act
+                // Assert
+                assertThrows(IllegalArgumentException.class, () -> {
+                    new Contact(testContactName, testPhoneNumber, testEmail);
+                });
+            }
+
         }
     }
 }
