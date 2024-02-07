@@ -10,11 +10,13 @@ the contacts, each containing a name, phone number and email address.\
  1.1 - name can't be null, empty or whitespace, and it has more than 3 characters,\
  1.2 - phone number has 11 numbers\
  1.3 - email address has a correct format.\
-*Test 2* -  When a contact is added the contacts list contains that contact's details.
+*Test 2* -  When a contact is added to the address book, the contacts list contains that contact's details.
 
 **US2**\
 As an Address Book app user, I want to be able to search by a name, so that I can view the contact details associated 
 with this name.
+**Tests**
+*Test 1* - When a name is provided, that contact's details are displayed.
 
 **US3**\
 As an Address Book app user, I want to be able to remove a contact, so that I can maintain my record clean and updated.

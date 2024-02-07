@@ -1,6 +1,4 @@
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 public class AddressBook {
     private HashMap<String, Contact> contacts;
@@ -16,5 +14,9 @@ public class AddressBook {
 
     public Boolean containsContact(String contactName) {
         return this.contacts.get(contactName) != null;
+    }
+
+    public Contact searchContact(String contactName) {
+        return this.contacts.get(contactName);
     }
 }
