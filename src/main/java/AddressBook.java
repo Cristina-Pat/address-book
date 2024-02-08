@@ -53,7 +53,8 @@ public class AddressBook {
         this.contacts.put(newName, c);
     }
 
-    public void editPhoneNumber(String contactName, String newPhoneNumber) {
+    public void editPhoneNumber(String contactName, String newPhoneNumber) throws DuplicatePhoneNumberException {
+        validateUniquePhoneNumber(contacts.get(contactName));
         Contact c = this.searchContact(contactName);
         c.setPhoneNumber(newPhoneNumber);
     }
