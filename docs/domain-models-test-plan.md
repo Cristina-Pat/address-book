@@ -37,7 +37,7 @@ my contact list and avoid errors.\
 *Test 1*- When a contact with an already existing phone number is added to the list, the application throws an error.\  
 *Test 2*- When a contact with an already existing email address is added to the list, the application throws an error.\
 *Test 3*- When a contact is updated with an already existing phone number, the application throws an error.\
-*Test 3*- When a contact is updated with an already existing email address, the application throws an error.\
+*Test 4*- When a contact is updated with an already existing email address, the application throws an error.\
 
 **US6**\
 As an Address Book app user, I want to be able to view my all contacts, to have a comprehensive overview about my

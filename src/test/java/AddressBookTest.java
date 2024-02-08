@@ -154,12 +154,23 @@ public class AddressBookTest {
     class UpdateWithDuplicateTests {
         @Test
         @DisplayName("Updating a contact with an already existing phone number throws an error")
-        void testUpdateContactWithDuplicatePhoneNumber() {
+        void testUpdateContactWithDuplicatePhoneNumber() throws Exception{
             // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231",
+                    "john.doe@hello.co.uk");
+
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
 
             // Act
+            Contact evaLongoria = new Contact("Eva Longoria", "07894561425",
+                    "eva.longoria@gmail.com");
+            addressBook.addContact(evaLongoria);
 
             // Assert
+            assertThrows(DuplicatePhoneNumberException.class, () -> {
+                addressBook.editPhoneNumber("Eva Longoria", "07894561231");
+            });
         }
 
         @Test
