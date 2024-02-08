@@ -33,7 +33,11 @@ updated.
 
 **US5**\
 As an Address Book app user,I want the application to prevent duplicated phone numbers or emails to ensure accuracy in
-my contact list and avoid errors.
+my contact list and avoid errors.\
+*Test 1*- When a contact with an already existing phone number is added to the list, the application throws an error.\  
+*Test 2*- When a contact with an already existing email address is added to the list, the application throws an error.\
+*Test 3*- When a contact is updated with an already existing phone number, the application throws an error.\
+*Test 3*- When a contact is updated with an already existing email address, the application throws an error.\
 
 **US6**\
 As an Address Book app user, I want to be able to view my all contacts, to have a comprehensive overview about my
@@ -50,9 +54,11 @@ classDiagram
   class AddressBook {
     %% these are the core features
     -contacts: HashMap<String, Contact> 
-    -phoneNumberSet: UniquePhoneNumberSet
-    -emailSet: UniqueEmailSet
+    -phoneNumberSet: HasSet<String>
+    -emailSet: HasSet<String>
     +addContact(contactName: String, phoneNumber: String, emailAddress: String): void
+    -validateUniquePhoneNumber(contact: Contact): void
+    -validateUniqueEmailAdress(contact: Contact): void
     +searchContactByName(contactName: String): Contact
     +removeContact(contactName: String): void
     +editContactName(contactName: String, newContactName: String): void
@@ -76,20 +82,6 @@ classDiagram
     +setEmailAddress(emailAddress: String): void
   }
 
-  %% This class ensures that duplicate phone numbers are not allowed, as the HashSet contains unique elements
-  class UniquePhoneNumberSet {
-    -phoneNumbers: HashSet<String>
-    +addPhoneNumber(phoneNumber: String): boolean
-    +containsPhoneNumber(phoneNumber: String): boolean
-    +removePhoneNumber(phoneNumber: String): boolean
-  }
-  %% This class ensures that emails are not allowed, as the HashSet contains unique elements
-  class UniqueEmailSet {
-    -emailAddresses: HashSet<String>
-    +addEmailAddress(emailAddress: String): boolean
-    +containsEmailAddress(emailAddress: String): boolean
-    +removeEmailAddress(emailAddress: String): boolean
-  }
 
   class AdressBookApp {
     +displayMessage(message: String): void
@@ -99,12 +91,10 @@ classDiagram
   }
 
   AddressBook --* Contact
-  AddressBook --* UniquePhoneNumberSet
-  AddressBook --* UniqueEmailSet
   AddressBook *-- AdressBookApp
 ```
 
-![Initial Kanban Board]()
+![Initial Kanban Board](/docs/images/AB-Initial%20board.JPG)
 Figure 1: Initial Kanban Board
 
 The Trello Kanban Board can be accessed at:

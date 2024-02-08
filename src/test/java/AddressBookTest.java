@@ -1,4 +1,5 @@
 import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 
@@ -9,7 +10,7 @@ public class AddressBookTest {
 
     @Test
     @DisplayName("When a contact is added to the address book, the contacts list contains that contact's details")
-    public void testContactAdded() {
+    public void testContactAdded() throws Exception {
         // Arrange
         Contact johnDoe = new Contact("John Doe", "07894561231",
                 "john.doe@hello.co.uk");
@@ -23,7 +24,7 @@ public class AddressBookTest {
 
     @Test
     @DisplayName("When a name is provided, that contact's details are displayed")
-    public void testContactSearch() {
+    public void testContactSearch() throws Exception {
         // Arrange
         Contact johnDoe = new Contact("John Doe", "07894561231",
                 "john.doe@hello.co.uk");
@@ -38,7 +39,7 @@ public class AddressBookTest {
 
     @Test
     @DisplayName("When a contact is removed from the list, it no longer appears in the contact list")
-    public void testContactRemove() {
+    public void testContactRemove() throws Exception {
         // Arrange
         Contact johnDoe = new Contact("John Doe", "07894561231",
                 "john.doe@hello.co.uk");
@@ -57,7 +58,7 @@ public class AddressBookTest {
 
     @Test
     @DisplayName("When the contact's name is changed, it is displayed accordingly in the contact list")
-    public void testEditContactName() {
+    public void testEditContactName() throws Exception {
         // Arrange
         Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
                 "eva.longoria@gmail.com");
@@ -73,7 +74,7 @@ public class AddressBookTest {
 
     @Test
     @DisplayName("When the contact's phone number is changed, it is displayed accordingly in the contact list")
-    public void testEditPhoneNumber() {
+    public void testEditPhoneNumber() throws Exception {
         // Arrange
         Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
                 "eva.longoria@gmail.com");
@@ -89,7 +90,7 @@ public class AddressBookTest {
 
     @Test
     @DisplayName("When the contact's email is changed, it is displayed accordingly in the contact list")
-    public void testEditEmail() {
+    public void testEditEmail() throws Exception {
         // Arrange
         Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
                 "eva.longoria@gmail.com");
@@ -101,5 +102,74 @@ public class AddressBookTest {
         addressBook.editEmailAddress("Eva Longoria", newEmail);
         // Assert
         assertEquals(newEmail, addressBook.searchContact("Eva Longoria").getEmailAddress());
+    }
+
+    @Nested
+    @DisplayName("Adding Contact with Duplicate Phone Numbers and Emails Test")
+    class AddWithDuplicateTests {
+        @Test
+        @DisplayName("Adding a contact with an already existing phone number throws an error")
+        void testAddContactWithDuplicatePhoneNumber() throws Exception {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231",
+                    "john.doe@hello.co.uk");
+
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
+
+            // Act
+            Contact evaLongoria = new Contact("Eva Longoria", "07894561231",
+                    "eva.longoria@gmail.com");
+
+            // Assert
+            assertThrows(DuplicatePhoneNumberException.class, () -> {
+                addressBook.addContact(evaLongoria);
+            });
+
+        }
+
+        @Test
+        @DisplayName("Adding a contact with an already existing email address throws an error")
+        void testAddContactWithDuplicateEmailAddress() throws Exception {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231",
+                    "john.doe@hello.co.uk");
+
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
+
+            // Act
+            Contact evaLongoria = new Contact("Eva Longoria", "07894561242",
+                    "john.doe@hello.co.uk");
+
+            // Assert
+            assertThrows(DuplicateEmailAddressException.class, () -> {
+                addressBook.addContact(evaLongoria);
+            });
+        }
+    }
+
+    @Nested
+    @DisplayName("Updating Contact with Duplicate Phone Numbers and Emails Test")
+    class UpdateWithDuplicateTests {
+        @Test
+        @DisplayName("Updating a contact with an already existing phone number throws an error")
+        void testUpdateContactWithDuplicatePhoneNumber() {
+            // Arrange
+
+            // Act
+
+            // Assert
+        }
+
+        @Test
+        @DisplayName("Updating a contact with an already existing email address throws an error")
+        void testUpdateContactWithDuplicateEmailAddress() {
+            // Arrange
+
+            // Act
+
+            // Assert
+        }
     }
 }

@@ -58,7 +58,6 @@ public class Contact {
     }
 
     private static void validateEmailAddress(String emailAddress){
-        // validation used from
         if(!emailAddress.trim().matches("^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z-.]{2,5}$")){
             throw new IllegalArgumentException("The email address should contain an @ symbol and " +
                     "end with the domain name (such as gmail) followed by the top-level domain (such as .com)");}
