@@ -54,13 +54,14 @@ public class AddressBook {
     }
 
     public void editPhoneNumber(String contactName, String newPhoneNumber) throws DuplicatePhoneNumberException {
-        validateUniquePhoneNumber(contacts.get(contactName));
         Contact c = this.searchContact(contactName);
         c.setPhoneNumber(newPhoneNumber);
+        validateUniquePhoneNumber(contacts.get(contactName));
     }
 
-    public void editEmailAddress(String contactName, String newEmail) {
+    public void editEmailAddress(String contactName, String newEmail) throws DuplicateEmailAddressException {
         Contact c = this.searchContact(contactName);
         c.setEmailAddress(newEmail);
+        validateUniqueEmailAddress(contacts.get(contactName));
     }
 }

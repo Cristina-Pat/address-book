@@ -34,6 +34,7 @@ updated.
 **US5**\
 As an Address Book app user,I want the application to prevent duplicated phone numbers or emails to ensure accuracy in
 my contact list and avoid errors.\
+**Tests**
 *Test 1*- When a contact with an already existing phone number is added to the list, the application throws an error.\  
 *Test 2*- When a contact with an already existing email address is added to the list, the application throws an error.\
 *Test 3*- When a contact is updated with an already existing phone number, the application throws an error.\
