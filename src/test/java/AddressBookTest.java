@@ -175,12 +175,23 @@ public class AddressBookTest {
 
         @Test
         @DisplayName("Updating a contact with an already existing email address throws an error")
-        void testUpdateContactWithDuplicateEmailAddress() {
+        void testUpdateContactWithDuplicateEmailAddress() throws Exception {
             // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231",
+                    "john.doe@hello.co.uk");
+
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
 
             // Act
+            Contact evaLongoria = new Contact("Eva Longoria", "07894561425",
+                    "eva.longoria@gmail.com");
+            addressBook.addContact(evaLongoria);
 
             // Assert
+            assertThrows(DuplicateEmailAddressException.class, () -> {
+                addressBook.editEmailAddress("Eva Longoria", "john.doe@hello.co.uk");
+            });
         }
     }
 }
