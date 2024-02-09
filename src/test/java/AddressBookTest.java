@@ -293,7 +293,7 @@ public class AddressBookTest {
     @DisplayName("When a phone number is provided, its contact's details are displayed")
     public void testSearchContactByPhoneNumber() throws Exception {
         // Create a mock AddressBook object
-        AddressBook addressBook = mock(AddressBook.class);
+        AddressBook addressBook = new AddressBook();
 
         // Create a mock Contact object
         Contact johnDoe = new Contact("John Doe",

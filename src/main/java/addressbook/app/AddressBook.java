@@ -153,7 +153,19 @@ public class AddressBook {
         return this.contacts.isEmpty();
     }
 
-    public Contact searchContactByPhoneNumber(String number) {
+
+    /**
+     * Searches for a contact by phone number in the address book.
+     *
+     * @param phoneNumber the phone number to search for
+     * @return the contact object if found, or {@code null} if no contact with the provided phone number exists
+     */
+    public Contact searchContactByPhoneNumber(String phoneNumber) {
+        for (Contact contact : contacts.values()) {
+            if (contact.getPhoneNumber().equals(phoneNumber)) {
+                return contact;
+            }
+        }
         return null;
     }
 }
