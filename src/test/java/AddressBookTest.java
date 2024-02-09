@@ -1,6 +1,9 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 import static org.mockito.Mockito.*;
 
 
@@ -223,5 +226,65 @@ public class AddressBookTest {
 
         }
 
+        @Test
+        @DisplayName("When viewing all contacts, all contacts are displayed")
+        void testViewAllContacts() throws Exception {
+                // Arrange
+                Contact johnDoe = mock(Contact.class);
+                Contact evaLongoria= mock(Contact.class);
+
+                // Mock contact details
+                when(johnDoe.getContactName()).thenReturn("John Doe");
+                when(johnDoe.getPhoneNumber()).thenReturn("07894561231");
+                when(johnDoe.getEmailAddress()).thenReturn("john.doe@hello.co.uk");
+
+                when(evaLongoria.getContactName()).thenReturn("Eva Longoria");
+                when(evaLongoria.getPhoneNumber()).thenReturn("07894561425");
+                when(evaLongoria.getEmailAddress()).thenReturn("eva.longoria@gmail.com");
+
+                AddressBook addressBook = new AddressBook();
+                addressBook.addContact(johnDoe);
+                addressBook.addContact(evaLongoria);
+
+            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+
+
+            String expectedOutput = "All Contacts:" + System.lineSeparator() +
+                        "Name: John Doe" +System.lineSeparator() +
+                        "Phone Number: 07894561231" + System.lineSeparator() +
+                        "Email Address: john.doe@hello.co.uk" + System.lineSeparator() +System.lineSeparator() +
+                        "Name: Eva Longoria" + System.lineSeparator() +
+                        "Phone Number: 07894561425" + System.lineSeparator() +
+                        "Email Address: eva.longoria@gmail.com"+ System.lineSeparator() +System.lineSeparator();
+
+                // Act
+                addressBook.viewAllContacts();
+
+                // Assert
+                 assertEquals(expectedOutput, outContent.toString());
+        }
+
+        @Test
+        @DisplayName("When no contacts, notify the user")
+        void testEmptyContacts() throws Exception {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+
+            PrintStream mockedPrintStream = mock(PrintStream.class);
+            System.setOut(mockedPrintStream);
+
+            // Act
+            addressBook.viewAllContacts();
+
+            // Assert
+            verify(mockedPrintStream).println("No contacts");
+
+            //Clear
+            System.setOut(System.out);
+
+        }
     }
+
 }
+

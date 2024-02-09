@@ -64,7 +64,7 @@ public class AddressBook {
         c.setEmailAddress(newEmail);
         validateUniqueEmailAddress(contacts.get(contactName));
     }
-
+    // initial method
 //    public void viewAllContacts() {
 //        System.out.println("All Contacts:");
 //        for (HashMap.Entry<String, Contact> aContact : contacts.entrySet()) {
@@ -75,13 +75,17 @@ public class AddressBook {
 //            System.out.println();
 //        }
 //    }
+    // new method
     public void viewAllContacts() {
+        if (isContactListEmpty()) System.out.println("No contacts");
         System.out.println("All Contacts:");
-
         for (HashMap.Entry<String, Contact> aContact : contacts.entrySet()) {
             Contact contact = aContact.getValue();
             String formattedContact = ContactHelpers.formatContact(contact);
             System.out.println(formattedContact);
         }
+    }
+    public boolean isContactListEmpty() {
+        return this.contacts.isEmpty();
     }
 }
