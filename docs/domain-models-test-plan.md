@@ -55,8 +55,25 @@ the contact list is empty.\
 As an Address Book app user, I want to be able to interact with the system so that I can request information about my 
 contact list.\
 **Test**\
-*The test for the REPL implementation*\
-**Complete a table with the test**
+*Acceptance Test*\
+
+| Input                                     | Output                              |
+|-------------------------------------------|-------------------------------------|
+|                                           |                                     |
+| Enter your choice: 1                      |                                     |
+| Enter contact name: John Doe              |                                     |
+| Enter phone number: 07894561231           |                                     |
+| Enter email address: john.doe@example.com | Contact added successfully.         |
+|                                           |                                     |
+| Enter your choice: 4                      |                                     |
+|                                           | All contacts:                       |
+|                                           | Name: John Doe                      |
+|                                           | Phone Number: 07894561231           |
+|                                           | Email Address: john.doe@example.com |
+|                                           |                                     |
+| Enter your choice: 5                      |                                     |
+|                                           | Exiting Address Book Application.   |
+
 
 *Expected output:*
 Address Book Application
@@ -96,23 +113,25 @@ Address Book Application
    Exiting Address Book Application.
 
 ## Class diagram
+
 ``` mermaid
+
 classDiagram
   class AddressBook {
     %% these are the core features
     -contacts: HashMap<String, Contact> 
-    -phoneNumberSet: HasSet<String>
-    -emailSet: HasSet<String>
-    +addContact(contac: Contact): void
+    -phoneNumberSet: HashSet<String>
+    -emailSet: HashSet<String>
+    +addContact(contact: Contact): void
     -validateUniquePhoneNumber(contact: Contact): void
-    -validateUniqueEmailAdress(contact: Contact): void
+    -validateUniqueEmailAddress(contact: Contact): void
     +searchContactByName(contactName: String): Contact
     +removeContact(contactName: String): void
     +editContactName(contactName: String, newContactName: String): void
     +editContactPhoneNumber(contactName: String, newPhoneNumber: String): void
     +editContactEmailAddress(contactName: String, newEmailAddress: String): void
     +viewAllContacts(): HashMap<String, Contact>
-    %% these are the aditional features
+    %% these are the additional features
     +searchContactByPhoneNumber(phoneNumber: String): Contact
     +searchContactByEmailAddress(emailAddress: String): Contact
     +removeAllContacts(): boolean
@@ -127,17 +146,19 @@ classDiagram
     +setPhoneNumber(phoneNumber: String): void
     +setEmailAddress(emailAddress: String): void
   }
+  
+ class ContactHelpers {
+   +searchContact(contact: Contact): String
+ }
+ 
+  class AddressBookApp {
+    +main(args: String[]): void
+    }
 
-
-  class AdressBookApp {
-    +displayMessage(message: String): void
-    +getUserInput(): String
-    %% This is a part of the aditional features
-    +getConfirmation(message: String): boolean
-  }
-
-  AddressBook --* Contact
-  AddressBook *-- AdressBookApp
+ 
+ AddressBook --* Contact
+ Contact --* ContactHelpers
+ 
 ```
 
 ![Initial Kanban Board](/docs/images/AB-Initial%20board.JPG)
