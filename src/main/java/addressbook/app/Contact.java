@@ -1,9 +1,22 @@
+package addressbook.app;
+
 public class Contact {
+    /**
+     * Represents a contact with a name, phone number, and email address.
+     */
 
     private String contactName;
     private String phoneNumber;
     private String emailAddress;
 
+    /**
+     * Constructs a new Contact with the specified name, phone number, and email address.
+     * The parameters are validated before being added.
+     *
+     * @param aContactName  the name of the contact
+     * @param aPhoneNumber  the phone number of the contact
+     * @param anEmailAddress the email address of the contact
+     */
     public Contact(String aContactName, String aPhoneNumber, String anEmailAddress) {
         validateContactName(aContactName);
         validatePhoneNumber(aPhoneNumber);

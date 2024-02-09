@@ -1,3 +1,4 @@
+import addressbook.app.Contact;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -9,8 +10,8 @@ public class ContactTest {
 //    @Test
 //    void testContactNameSetByConstructor(){
 //        // Arrange
-//        String testContactName = "Test Contact Name";
-//        Contact testContact = new Contact(testContactName, "12345678",
+//        String testContactName = "Test addressbook.app.Contact Name";
+//        addressbook.app.Contact testContact = new addressbook.app.Contact(testContactName, "12345678",
 //                "testContact@gmail.com");
 //        // Act
 //        String actualContactName = testContact.getContactName();
@@ -21,7 +22,7 @@ public class ContactTest {
     @DisplayName("Construct tests")
     class ConstructorTests{
         @Test
-        @DisplayName("Contact construct sets expected values when valid")
+        @DisplayName("addressbook.app.Contact construct sets expected values when valid")
         public void testConstructorSetsValuesWhenValid(){
             // Arrange
             String testContactName = "John Doe";
@@ -39,7 +40,7 @@ public class ContactTest {
         }
 
         @Nested
-        @DisplayName("Name tests using Contact")
+        @DisplayName("Name tests using addressbook.app.Contact")
         class ContactNameTest {
             @Test
             @DisplayName("Constructor throws exception when the name is null")

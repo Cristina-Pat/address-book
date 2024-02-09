@@ -64,7 +64,7 @@ classDiagram
     -contacts: HashMap<String, Contact> 
     -phoneNumberSet: HasSet<String>
     -emailSet: HasSet<String>
-    +addContact(contactName: String, phoneNumber: String, emailAddress: String): void
+    +addContact(contac: Contact): void
     -validateUniquePhoneNumber(contact: Contact): void
     -validateUniqueEmailAdress(contact: Contact): void
     +searchContactByName(contactName: String): Contact
@@ -83,7 +83,6 @@ classDiagram
     -contactName: String
     -phoneNumber: String
     -emailAddress: String
-    +Contact(contactname: String, phoneNumber: String, emailAddress: String)
     +getPhoneNumber(): String
     +getEmailAddress(): String
     +setPhoneNumber(phoneNumber: String): void
@@ -98,8 +97,8 @@ classDiagram
     +getConfirmation(message: String): boolean
   }
 
-  AddressBook --* Contact
-  AddressBook *-- AdressBookApp
+  addressbook.app.AddressBook --* addressbook.app.Contact
+  addressbook.app.AddressBook *-- AdressBookApp
 ```
 
 ![Initial Kanban Board](/docs/images/AB-Initial%20board.JPG)

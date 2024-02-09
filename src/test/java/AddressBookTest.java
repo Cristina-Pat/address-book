@@ -1,9 +1,11 @@
-import org.junit.jupiter.api.BeforeEach;
+import addressbook.app.AddressBook;
+import addressbook.app.Contact;
+import addressbook.app.DuplicateEmailAddressException;
+import addressbook.app.DuplicatePhoneNumberException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
+
 import static org.mockito.Mockito.*;
 
 
@@ -113,7 +115,7 @@ public class AddressBookTest {
     }
 
     @Nested
-    @DisplayName("Adding Contact with Duplicate Phone Numbers and Emails Test")
+    @DisplayName("Adding addressbook.app.Contact with Duplicate Phone Numbers and Emails Test")
     class AddWithDuplicateTests {
         @Test
         @DisplayName("Adding a contact with an already existing phone number throws an error")
@@ -154,7 +156,7 @@ public class AddressBookTest {
     }
 
     @Nested
-    @DisplayName("Updating Contact with Duplicate Phone Numbers and Emails Test")
+    @DisplayName("Updating addressbook.app.Contact with Duplicate Phone Numbers and Emails Test")
     class UpdateWithDuplicateTests {
         @Test
         @DisplayName("Updating a contact with an already existing phone number throws an error")
