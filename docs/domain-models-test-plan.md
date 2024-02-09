@@ -161,6 +161,19 @@ classDiagram
  
 ```
 
+### Additional Features
+
+**US8**\
+As a user of the AddressBook app, I want to be able to search for a contact by their 
+phone number so that I can quickly find and access their contact information.
+![ChatGPT user story proposal](/docs/images/US7_chatGPT-sol.JPG)
+
+**Tests**
+*Test 1* - When a phone number is provided, its contact's details are displayed.\
+*Test 2* - When an invalid phone number is provided, the user gets a  notification.\
+
+
+
 ![Initial Kanban Board](/docs/images/AB-Initial%20board.JPG)
 Figure 1: Initial Kanban Board
 

@@ -152,4 +152,8 @@ public class AddressBook {
     public boolean isContactListEmpty() {
         return this.contacts.isEmpty();
     }
+
+    public Contact searchContactByPhoneNumber(String number) {
+        return null;
+    }
 }

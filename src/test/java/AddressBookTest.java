@@ -286,7 +286,27 @@ public class AddressBookTest {
             System.setOut(System.out);
 
         }
+
     }
 
-}
+    @Test
+    @DisplayName("When a phone number is provided, its contact's details are displayed")
+    public void testSearchContactByPhoneNumber() throws Exception {
+        // Create a mock AddressBook object
+        AddressBook addressBook = mock(AddressBook.class);
+
+        // Create a mock Contact object
+        Contact johnDoe = new Contact("John Doe",
+                "07894561232", "john.doe@example.com");
+        Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
+                "eva.longoria@gmail.com");
+        addressBook.addContact(johnDoe);
+        addressBook.addContact(evaLongoria);
+
+        // Perform the test
+        Contact foundContact = addressBook.searchContactByPhoneNumber("07259634825");
+        assertEquals("Eva Longoria", foundContact.getContactName());
+        }
+    }
+
 
