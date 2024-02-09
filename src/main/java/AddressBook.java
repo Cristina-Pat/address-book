@@ -65,14 +65,23 @@ public class AddressBook {
         validateUniqueEmailAddress(contacts.get(contactName));
     }
 
+//    public void viewAllContacts() {
+//        System.out.println("All Contacts:");
+//        for (HashMap.Entry<String, Contact> aContact : contacts.entrySet()) {
+//            Contact contact = aContact.getValue();
+//            System.out.println("Name: " + contact.getContactName());
+//            System.out.println("Phone Number: " + contact.getPhoneNumber());
+//            System.out.println("Email Address: " + contact.getEmailAddress());
+//            System.out.println();
+//        }
+//    }
     public void viewAllContacts() {
         System.out.println("All Contacts:");
+
         for (HashMap.Entry<String, Contact> aContact : contacts.entrySet()) {
             Contact contact = aContact.getValue();
-            System.out.println("Name: " + contact.getContactName());
-            System.out.println("Phone Number: " + contact.getPhoneNumber());
-            System.out.println("Email Address: " + contact.getEmailAddress());
-            System.out.println();
+            String formattedContact = ContactHelpers.formatContact(contact);
+            System.out.println(formattedContact);
         }
     }
 }

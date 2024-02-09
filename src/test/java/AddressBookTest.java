@@ -213,10 +213,13 @@ public class AddressBookTest {
 
             // Assert
             verify(mockedPrintStream).println("All Contacts:");
-            verify(mockedPrintStream).println("Name: John Doe");
-            verify(mockedPrintStream).println("Phone Number: 07894561231");
-            verify(mockedPrintStream).println("Email Address: john.doe@hello.co.uk");
-            verify(mockedPrintStream).println();
+            verify(mockedPrintStream).println(
+                    "Name: John Doe\n" +
+                    "Phone Number: 07894561231\n" +
+                    "Email Address: john.doe@hello.co.uk\n");
+
+            //Clear
+            System.setOut(System.out);
 
         }
 
