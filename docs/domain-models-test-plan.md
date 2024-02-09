@@ -53,8 +53,47 @@ the contact list is empty.\
 
 **US7**\
 As an Address Book app user, I want to be able to interact with the system so that I can request information about my 
-contact list.
+contact list.\
+**Test**\
+*The test for the REPL implementation*\
+**Complete a table with the test**
 
+*Expected output:*
+Address Book Application
+
+1. Add contact
+2. Search contact by name
+3. Remove contact
+4. View all contacts
+5. Exit
+   Enter your choice: 1
+   Enter contact name: John Doe
+   Enter phone number: 07894561231
+   Enter email address: john.doe@example.com
+   Contact added successfully.
+
+Address Book Application
+
+1. Add contact
+2. Search contact by name
+3. Remove contact
+4. View all contacts
+5. Exit
+   Enter your choice: 4
+   All contacts:
+   Name: John Doe
+   Phone Number: 07894561231
+   Email Address: john.doe@example.com
+
+Address Book Application
+
+1. Add contact
+2. Search contact by name
+3. Remove contact
+4. View all contacts
+5. Exit
+   Enter your choice: 5
+   Exiting Address Book Application.
 
 ## Class diagram
 ``` mermaid
@@ -97,8 +136,8 @@ classDiagram
     +getConfirmation(message: String): boolean
   }
 
-  addressbook.app.AddressBook --* addressbook.app.Contact
-  addressbook.app.AddressBook *-- AdressBookApp
+  AddressBook --* Contact
+  AddressBook *-- AdressBookApp
 ```
 
 ![Initial Kanban Board](/docs/images/AB-Initial%20board.JPG)

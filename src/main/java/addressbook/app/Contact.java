@@ -56,11 +56,10 @@ public class Contact {
         if(name == null || name.trim().isEmpty()){
             throw new IllegalArgumentException("Contact name cannot be null or empty");
         }
-        /* the name starts with a letter and contains at least 3 letters, allowing for spaces between
-        names in the format first-last
-         */
+
         if(!name.trim().matches("^[a-zA-Z]+( [a-zA-Z]+){1,}$")){
-            throw new IllegalArgumentException("Name must start with a letter and contain at least 3 letters");
+            throw new IllegalArgumentException("Name must start with a letter and contains at least 3 letters, " +
+                    "allowing for spaces between names in the format first-last");
         }
     }
 

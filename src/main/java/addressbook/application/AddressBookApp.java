@@ -1,11 +1,12 @@
 package addressbook.application;
 import addressbook.app.*;
 
+import java.util.Scanner;
 
 public class AddressBookApp {
     public static void main(String[] args) {
         // Create an instance of the AddressBook
-        AddressBook addressBook = new AddressBook();
+         AddressBook addressBook = new AddressBook();
 
         // Add some contacts to the address book
         try {
@@ -40,7 +41,92 @@ public class AddressBookApp {
 
         // View all contacts again after removal
         addressBook.viewAllContacts();
-        
+        System.out.println("=============================");
 
+        Scanner scanner = new Scanner(System.in);
+
+        while (true) {
+            System.out.println("\nAddress Book Application");
+            System.out.println("1. Add contact");
+            System.out.println("2. Search contact by name");
+            System.out.println("3. Remove contact");
+            System.out.println("4. View all contacts");
+            System.out.println("5. Exit");
+            System.out.print("Enter your choice: ");
+
+            int choice = scanner.nextInt();
+            scanner.nextLine(); // Consume newline character
+
+            switch (choice) {
+                case 1:
+                    addContact(addressBook, scanner);
+                    break;
+                case 2:
+                    searchContactByName(addressBook, scanner);
+                    break;
+                case 3:
+                    removeContact(addressBook, scanner);
+                    break;
+                case 4:
+                    viewAllContacts(addressBook);
+                    break;
+                case 5:
+                    System.out.println("Exiting Address Book Application.");
+                    scanner.close();
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice. Please enter a valid option.");
+            }
+        }
+    }
+
+    private static void addContact(AddressBook addressBook, Scanner scanner) {
+        Boolean isValidContactAdded = true;
+        do {
+            try {
+                System.out.print("Enter contact name: ");
+                String name = scanner.nextLine();
+
+                System.out.print("Enter phone number: ");
+                String phoneNumber = scanner.nextLine();
+
+                System.out.print("Enter email address: ");
+                String emailAddress = scanner.nextLine();
+
+                // Check if contact details are valid
+                addressBook.addContact(new Contact(name, phoneNumber, emailAddress));
+                System.out.println("Contact added successfully.");
+
+            } catch (Exception e) {
+                System.out.println("Error adding contact: " + e.getMessage());
+                isValidContactAdded = false;
+            }
+        } while(!isValidContactAdded);
+    }
+
+    private static void searchContactByName(AddressBook addressBook, Scanner scanner) {
+        System.out.print("Enter contact name to search: ");
+        String searchName = scanner.nextLine();
+        Contact foundContact = addressBook.searchContact(searchName);
+        if (foundContact != null) {
+            System.out.println("Contact found:");
+            System.out.println("Name: " + foundContact.getContactName());
+            System.out.println("Phone Number: " + foundContact.getPhoneNumber());
+            System.out.println("Email Address: " + foundContact.getEmailAddress());
+        } else {
+            System.out.println("Contact not found with name: " + searchName);
+        }
+    }
+
+    private static void removeContact(AddressBook addressBook, Scanner scanner) {
+        System.out.print("Enter contact name to remove: ");
+        String removeName = scanner.nextLine();
+        addressBook.removeContact(removeName);
+        System.out.println("Contact removed successfully.");
+    }
+
+    private static void viewAllContacts(AddressBook addressBook) {
+        System.out.println("All contacts:");
+        addressBook.viewAllContacts();
     }
 }
