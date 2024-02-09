@@ -42,7 +42,14 @@ my contact list and avoid errors.\
 
 **US6**\
 As an Address Book app user, I want to be able to view my all contacts, to have a comprehensive overview about my
-contact list.
+contact list.\
+**Tests**
+*Test 1* - When viewing all contacts, the application should present a detailed overview,
+including name, phone number, and email address.\
+*Test 2* - When the user views all contacts, the application should display a comprehensive list of contacts.\
+*Test 3* - When there are no contacts in the address book, the application should notify the user that 
+the contact list is empty.\
+
 
 **US7**\
 As an Address Book app user, I want to be able to interact with the system so that I can request information about my 

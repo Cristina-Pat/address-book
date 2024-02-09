@@ -1,7 +1,12 @@
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.*;
 
+
+
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -122,9 +127,7 @@ public class AddressBookTest {
                     "eva.longoria@gmail.com");
 
             // Assert
-            assertThrows(DuplicatePhoneNumberException.class, () -> {
-                addressBook.addContact(evaLongoria);
-            });
+            assertThrows(DuplicatePhoneNumberException.class, () -> addressBook.addContact(evaLongoria));
 
         }
 
@@ -143,9 +146,7 @@ public class AddressBookTest {
                     "john.doe@hello.co.uk");
 
             // Assert
-            assertThrows(DuplicateEmailAddressException.class, () -> {
-                addressBook.addContact(evaLongoria);
-            });
+            assertThrows(DuplicateEmailAddressException.class, () -> addressBook.addContact(evaLongoria));
         }
     }
 
@@ -168,9 +169,7 @@ public class AddressBookTest {
             addressBook.addContact(evaLongoria);
 
             // Assert
-            assertThrows(DuplicatePhoneNumberException.class, () -> {
-                addressBook.editPhoneNumber("Eva Longoria", "07894561231");
-            });
+            assertThrows(DuplicatePhoneNumberException.class, () -> addressBook.editPhoneNumber("Eva Longoria", "07894561231"));
         }
 
         @Test
@@ -189,9 +188,37 @@ public class AddressBookTest {
             addressBook.addContact(evaLongoria);
 
             // Assert
-            assertThrows(DuplicateEmailAddressException.class, () -> {
-                addressBook.editEmailAddress("Eva Longoria", "john.doe@hello.co.uk");
-            });
+            assertThrows(DuplicateEmailAddressException.class, () -> addressBook.editEmailAddress("Eva Longoria", "john.doe@hello.co.uk"));
         }
+    }
+
+    @Nested
+    @DisplayName("View All Contacts")
+    class ViewAllContactsTests {
+        @Test
+        @DisplayName("When viewing all contacts, a detailed overview is provided")
+        void testDetailedAllContactsOverview() throws Exception {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231",
+                    "john.doe@hello.co.uk");
+
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
+
+            PrintStream mockedPrintStream = mock(PrintStream.class);
+            System.setOut(mockedPrintStream);
+
+            // Act
+            addressBook.viewAllContacts();
+
+            // Assert
+            verify(mockedPrintStream).println("All Contacts:");
+            verify(mockedPrintStream).println("Name: John Doe");
+            verify(mockedPrintStream).println("Phone Number: 07894561231");
+            verify(mockedPrintStream).println("Email Address: john.doe@hello.co.uk");
+            verify(mockedPrintStream).println();
+
+        }
+
     }
 }

@@ -64,4 +64,7 @@ public class AddressBook {
         c.setEmailAddress(newEmail);
         validateUniqueEmailAddress(contacts.get(contactName));
     }
+
+    public void viewAllContacts() {
+    }
 }
