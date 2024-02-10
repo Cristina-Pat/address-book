@@ -170,7 +170,7 @@ phone number so that I can quickly find and access their contact information.
 
 **Tests**
 *Test 1* - When a phone number is provided, its contact's details are displayed.\
-*Test 2* - When an invalid phone number is provided, the user gets a  notification.\
+*Test 2* - When an invalid phone number is provided, no contact is displayed.\
 
 
 

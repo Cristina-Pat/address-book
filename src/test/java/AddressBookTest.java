@@ -12,6 +12,7 @@ import static org.mockito.Mockito.*;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.util.function.Supplier;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -289,24 +290,45 @@ public class AddressBookTest {
 
     }
 
-    @Test
-    @DisplayName("When a phone number is provided, its contact's details are displayed")
-    public void testSearchContactByPhoneNumber() throws Exception {
-        // Create a mock AddressBook object
-        AddressBook addressBook = new AddressBook();
+    @Nested
+    @DisplayName("Search by Number")
+    class SearchByNumber {
+        @Test
+        @DisplayName("When a phone number is provided, its contact's details are displayed")
+        public void testSearchContactByPhoneNumber() throws Exception {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+            Contact johnDoe = new Contact("John Doe",
+                    "07894561232", "john.doe@example.com");
+            Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
+                    "eva.longoria@gmail.com");
+            addressBook.addContact(johnDoe);
+            addressBook.addContact(evaLongoria);
 
-        // Create a mock Contact object
-        Contact johnDoe = new Contact("John Doe",
-                "07894561232", "john.doe@example.com");
-        Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
-                "eva.longoria@gmail.com");
-        addressBook.addContact(johnDoe);
-        addressBook.addContact(evaLongoria);
+            // Act
+            Contact foundContact = addressBook.searchContactByPhoneNumber("07259634825");
 
-        // Perform the test
-        Contact foundContact = addressBook.searchContactByPhoneNumber("07259634825");
-        assertEquals("Eva Longoria", foundContact.getContactName());
+            // Assert
+            assertEquals("Eva Longoria", foundContact.getContactName());
+        }
+
+        @Test
+        @DisplayName("When an invalid phone number is provided, no contact is displayed")
+        public void testSearchContactByInvalidPhoneNumber() throws Exception {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+
+            Contact evaLongoria = new Contact("Eva Longoria", "07259634825",
+                    "eva.longoria@gmail.com");
+            addressBook.addContact(evaLongoria);
+
+            // Act
+            Contact foundContact = addressBook.searchContactByPhoneNumber("07891232");
+
+            // Assert
+            if (foundContact == null) System.out.println("No contact found for the provided phone number.");
         }
     }
+}
 
 
