@@ -149,7 +149,7 @@ public class AddressBook {
      *
      * @return true if the contact list is empty, otherwise false
      */
-    public boolean isContactListEmpty() {
+    private boolean isContactListEmpty() {
         return this.contacts.isEmpty();
     }
 
