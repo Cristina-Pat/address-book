@@ -1,5 +1,5 @@
 # Domain Models, Class Diagrams and Test Plan
-## User Stories
+## User Stories -> Class Diagram -> Tests
 
 ### Core Features
 **US1**\
@@ -14,31 +14,31 @@ the contacts, each containing a name, phone number and email address.\
 
 **US2**\
 As an Address Book app user, I want to be able to search by a name, so that I can view the contact details associated 
-with this name.
-**Tests**
+with this name.\
+**Tests**\
 *Test 1* - When a name is provided, that contact's details are displayed.\
 
 **US3**\
-As an Address Book app user, I want to be able to remove a contact, so that I can maintain my record clean and updated.
-**Tests**
+As an Address Book app user, I want to be able to remove a contact, so that I can maintain my record clean and updated.\
+**Tests**\
 *Test 1* - When a contact is removed from the list, it no longer appears in the contact list.\
 
 **US4**\
 As an Address Book app user, I want to be able to edit the contact's details, so that I can maintain my contact list
-updated. 
-**Tests**
-*Test 1* - When the contact's name is changed, it is displayed accordingly in the contact list.
-*Test 2* - When a contact's phone number is changed, this is displayed accordingly in the contact list.
-*Test 3* - When a contact's email address is changed, this is displayed correctly in the contact list.
+updated. \
+**Tests**\
+*Test 1* - When the contact's name is changed, it is displayed accordingly in the contact list.\
+*Test 2* - When a contact's phone number is changed, this is displayed accordingly in the contact list.\
+*Test 3* - When a contact's email address is changed, this is displayed correctly in the contact list.\
 
 **US5**\
 As an Address Book app user,I want the application to prevent duplicated phone numbers or emails to ensure accuracy in
 my contact list and avoid errors.\
 **Tests**
-*Test 1*- When a contact with an already existing phone number is added to the list, the application throws an error.\  
-*Test 2*- When a contact with an already existing email address is added to the list, the application throws an error.\
-*Test 3*- When a contact is updated with an already existing phone number, the application throws an error.\
-*Test 4*- When a contact is updated with an already existing email address, the application throws an error.\
+*Test 1* - When a contact with an already existing phone number is added to the list, the application throws an error.\  
+*Test 2* - When a contact with an already existing email address is added to the list, the application throws an error.\
+*Test 3* - When a contact is updated with an already existing phone number, the application throws an error.\
+*Test 4* - When a contact is updated with an already existing email address, the application throws an error.\
 
 **US6**\
 As an Address Book app user, I want to be able to view my all contacts, to have a comprehensive overview about my
@@ -167,7 +167,7 @@ classDiagram
  Contact *-- ContactHelpers
  
 ```
-
+---
 ### Additional Features
 
 **US8**\
@@ -207,9 +207,81 @@ Figure 4: ChatGPT solution for`searchContactbyPhoneNumber`method
 
 ![ChatGPT JUnit test proposal for Test2](//docs/images/US8_chatGPT-JUnitTest2.JPG)\
 Figure 5: ChatGPT JUnit test proposal for Test1
+---
+### Project Plan
 
 ![Initial Kanban Board](//docs/images/AB-Initial%20board.JPG)\
 Figure 1: Initial Kanban Board
 
 The Trello Kanban Board can be accessed at:
 [Trello Board](https://trello.com/b/BPiPEQ8D/addressbook-challenge)
+
+---
+
+## Client Presentation: AddressBook Application
+This is a proposed solution for addressing the need for an efficient and reliable address book application. 
+In this digital era, managing contacts effectively is crucial for personal and professional activities. This software 
+prototype aims to streamline this process and offer various benefits to your business.
+
+**The Addressed Problem**
+
+Based on the requirements provided by the Business Analyst team, some challenges were identified with the current
+ contact management system. One significant issue is the lack of a centralized system, leading to duplicate entries 
+and confusion. Another problem lies in the scattered nature of contact information, making it challenging to quickly 
+locate specific details.
+
+**The Proposed Solution**
+
+Our proposed address book application addresses these challenges by offering the following solutions:\
+*Centralized Contact Management* - This prototype implementation ensures efficient organization of all contact 
+information in a single platform. For instance, taking advantages of using an efficient type of list - HashMap  
+for storage in the application enables rapid search capabilities, enhancing the efficiency of the application.\
+*Duplicate Prevention* - The application incorporates built-in mechanisms to prevent duplicate entries by validating 
+user inputs and enforcing specific formatting rules. It validates incoming contact details against existing ones, 
+ensuring that duplicate phone numbers and email addresses are not added to the system. Utilizing data structures like 
+HashSet, duplicate contact details are automatically detected and prevented. Additionally, the application's design, 
+using HashSet as a data structure, serves as an index for searching phone numbers and email addresses, enhancing data 
+accuracy and integrity.\
+*Efficient Search Functionality* - With intuitive search features, users swiftly access contact details, finding specific
+contacts by name and efficiently retrieving desired information from centralized data structures. Using specialized 
+data structures like HashMaps for indexing, the application facilitates rapid contact search, thereby enhancing both 
+user experience and efficiency.\
+*Automated Data Maintenance* - The prototype implementation simplifies contact management tasks, ensuring seamless updates 
+and removals of contact information. For example, any changes made to a contact's details are automatically reflected 
+in the centralized storage, reducing manual effort and maintaining data integrity.
+
+**Benefits for Company**
+
+By incorporating the application into your product catalogue, the company can reap numerous advantages:\
+*Improved Productivity* - This streamlined contact management system minimizes time spent on administrative tasks, 
+empowering the one that are using it to concentrate on essential activities.\
+*Enhanced Precision* - With duplicate entry prevention and centralized data storage, the application ensures 
+the accuracy and consistency of any contact information.\
+*Efficient Communication* - Rapid access to contact details facilitates smooth interactions with clients, partners, 
+and team members, fostering efficient communication channels.\
+*Better Decision-Making* - Access to real-time contact information enables data-driven decision-making processes, 
+contributing to improved strategic planning and business outcomes.
+
+**Impact on Your Business**
+
+The adoption of this application will have a significant positive impact on the business:\
+*Expanded Efficiency* - The AddressBook application optimizes contact management workflows, amplifying operational
+efficiency and productivity.\
+*Elevated Professionalism* - With dependable contact management, your users project an image of professionalism 
+and trustworthiness, enhancing their brand reputation.\
+*Cost-Effective Operations* - Streamlined processes and decreased error rates translate into tangible cost savings, 
+both in time and resources.\
+*Strengthened Customer Connections* - Prompt and precise communication enabled by this application fosters stronger 
+bonds with customers and users, nurturing loyalty, and satisfaction.\
+*Revenue Generation Opportunities* - The flexibility of this application allows for customization to meet the specific 
+needs of users. This opens avenues for selling the application as a standalone product or offering customized versions
+tailored to individual customer requirements.
+
+**Conclusion**
+
+In conclusion, the AddressBook prototype application offers a comprehensive solution for efficiently managing contacts,
+catering to both personal and enterprise needs. By addressing various challenges and providing numerous benefits, this
+software enhances productivity and organization, whether used by individuals or businesses. Additionally, its 
+flexibility allows for optimization according to specific requirements, ensuring effectiveness across different usage
+scenarios.
+
