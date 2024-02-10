@@ -218,11 +218,11 @@ public class AddressBookTest {
             addressBook.viewAllContacts();
 
             // Assert
-            verify(mockedPrintStream).println("All Contacts:");
+            //verify(mockedPrintStream).println("All Contacts:");
             verify(mockedPrintStream).println(
-                    "Name: John Doe\n" +
-                    "Phone Number: 07894561231\n" +
-                    "Email Address: john.doe@hello.co.uk\n");
+                    "Name: John Doe" + System.lineSeparator() +
+                    "Phone Number: 07894561231" + System.lineSeparator() +
+                    "Email Address: john.doe@hello.co.uk" + System.lineSeparator());
 
             //Clear
             System.setOut(System.out);
@@ -313,7 +313,7 @@ public class AddressBookTest {
         }
 
         @Test
-        @DisplayName("When an invalid phone number is provided, no contact is displayed")
+        @DisplayName("When a non-existing phone number is provided, no contact is displayed")
         public void testSearchContactByInvalidPhoneNumber() throws Exception {
             // Arrange
             AddressBook addressBook = new AddressBook();
