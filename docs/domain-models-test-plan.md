@@ -121,16 +121,18 @@ classDiagram
     %% these are the core features
     -contacts: HashMap<String, Contact> 
     -phoneNumberSet: HashSet<String>
-    -emailSet: HashSet<String>
+    -emailAddressSet: HashSet<String>
     +addContact(contact: Contact): void
     -validateUniquePhoneNumber(contact: Contact): void
     -validateUniqueEmailAddress(contact: Contact): void
+    +containsContact(contactName: String): Boolean
     +searchContactByName(contactName: String): Contact
     +removeContact(contactName: String): void
     +editContactName(contactName: String, newContactName: String): void
     +editContactPhoneNumber(contactName: String, newPhoneNumber: String): void
     +editContactEmailAddress(contactName: String, newEmailAddress: String): void
     +viewAllContacts(): HashMap<String, Contact>
+    -isContactListEmpty()
     %% these are the additional features
     +searchContactByPhoneNumber(phoneNumber: String): Contact
     +searchContactByEmailAddress(emailAddress: String): Contact
@@ -141,10 +143,15 @@ classDiagram
     -contactName: String
     -phoneNumber: String
     -emailAddress: String
+    +getContactName(): String
+    +setContactName(contactName: String): void
     +getPhoneNumber(): String
+    +setPhoneNumbe(phoneNumber: String): void
     +getEmailAddress(): String
-    +setPhoneNumber(phoneNumber: String): void
     +setEmailAddress(emailAddress: String): void
+    -validateContactName(name: String) void
+    -validatePhoneNumber(phoneNumber: String) void
+    -validateEmailAddress(emailAddress: String) void
   }
   
  class ContactHelpers {
@@ -157,7 +164,7 @@ classDiagram
 
  
  AddressBook --* Contact
- Contact --* ContactHelpers
+ Contact *-- ContactHelpers
  
 ```
 
@@ -165,16 +172,43 @@ classDiagram
 
 **US8**\
 As a user of the AddressBook app, I want to be able to search for a contact by their 
-phone number so that I can quickly find and access their contact information.
-![ChatGPT user story proposal](/docs/images/US7_chatGPT-sol.JPG)
+phone number so that I can quickly find and access their contact information.\
+*Note:* This user story was created using GAI, and because the context offered 
+and the problem are simpler, the answer was good, and I used it.\
+
+![ChatGPT user story proposal](//docs/images/US8_chatGPT-sol.JPG)\
+Figure 1: ChatGPT user story proposal
 
 **Tests**
 *Test 1* - When a phone number is provided, its contact's details are displayed.\
-*Test 2* - When an invalid phone number is provided, no contact is displayed.\
+*Test 2* - When a non-existing phone number is provided, no contact is displayed.\
+*Note:* The ChatGPT offered a complex test format, but I wanted to maintain consistency 
+and rephrase its response. However, the answer was still helpful.\
 
+![ChatGPT tests proposal](//docs/images/US8_chatGPT-tests.JPG)\
+Figure 2: ChatGPT tests proposal
 
+**Notes about implementing the solution using GAI**
+1. The proposed JUnit test `testSearchContactByPhoneNumber` followed a good approach - Figure 3. 
+I had to adapt this test because it did not match all the validations that I have 
+implemented in the core feature of the Contact constructor. 
+2. The method implementation was accurate after I provided the JUnit to GAI, which had the previous 
+content of how the AddressBook attributes and behaviors were structured - Figure 4.
+3. For Test2, it was easy to create the JUnit test because the GAI knew the context and had already provided 
+a solution for implementing the `searchContactByPhoneNumber` method. The proposed test was then adapted 
+for consistency in the testing environment.
+4. 
 
-![Initial Kanban Board](/docs/images/AB-Initial%20board.JPG)
+![ChatGPT JUnit test proposal for Test1](//docs/images/US8_charGPT-JUnit.JPG)\
+Figure 3: ChatGPT JUnit test proposal for Test1
+
+![ChatGPT `searchContactbyPhoneNumber`method](//docs/images/US8_chatGPT-searchbynumbersolution.JPG)\
+Figure 4: ChatGPT solution for`searchContactbyPhoneNumber`method
+
+![ChatGPT JUnit test proposal for Test2](//docs/images/US8_chatGPT-JUnitTest2.JPG)\
+Figure 5: ChatGPT JUnit test proposal for Test1
+
+![Initial Kanban Board](//docs/images/AB-Initial%20board.JPG)\
 Figure 1: Initial Kanban Board
 
 The Trello Kanban Board can be accessed at:
