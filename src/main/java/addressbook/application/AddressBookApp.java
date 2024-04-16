@@ -49,9 +49,10 @@ public class AddressBookApp {
             System.out.println("\nAddress Book Application");
             System.out.println("1. Add contact");
             System.out.println("2. Search contact by name");
-            System.out.println("3. Remove contact");
-            System.out.println("4. View all contacts");
-            System.out.println("5. Exit");
+            System.out.println("3. Search contact by phone number");
+            System.out.println("4. Remove contact");
+            System.out.println("5. View all contacts");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -67,12 +68,15 @@ public class AddressBookApp {
                     searchContactByName(addressBook, scanner);
                     break;
                 case 3:
-                    removeContact(addressBook, scanner);
+                    searchContactByPhone(addressBook, scanner);
                     break;
                 case 4:
-                    viewAllContacts(addressBook);
+                    removeContact(addressBook, scanner);
                     break;
                 case 5:
+                    viewAllContacts(addressBook);
+                    break;
+                case 6:
                     System.out.println("Exiting Address Book Application.");
                     scanner.close();
                     System.exit(0);
@@ -119,6 +123,20 @@ public class AddressBookApp {
             System.out.println("Email Address: " + foundContact.getEmailAddress());
         } else {
             System.out.println("Contact not found with name: " + searchName);
+        }
+    }
+
+    private static void searchContactByPhone(AddressBook addressBook, Scanner scanner) {
+        System.out.print("Enter phone number to search: ");
+        String searchPhoneNumber = scanner.nextLine();
+        Contact foundContact = addressBook.searchContactByPhoneNumber(searchPhoneNumber);
+        if (foundContact != null) {
+            System.out.println("Contact found:");
+            System.out.println("Name: " + foundContact.getContactName());
+            System.out.println("Phone Number: " + foundContact.getPhoneNumber());
+            System.out.println("Email Address: " + foundContact.getEmailAddress());
+        } else {
+            System.out.println("Contact not found with phone number: " + searchPhoneNumber);
         }
     }
 
