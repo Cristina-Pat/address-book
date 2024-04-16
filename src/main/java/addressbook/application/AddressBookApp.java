@@ -59,7 +59,9 @@ public class AddressBookApp {
 
             switch (choice) {
                 case 1:
-                    addContact(addressBook, scanner);
+                    if (addContact(addressBook, scanner)) {
+                        continue;
+                    }
                     break;
                 case 2:
                     searchContactByName(addressBook, scanner);
@@ -80,8 +82,8 @@ public class AddressBookApp {
         }
     }
 
-    private static void addContact(AddressBook addressBook, Scanner scanner) {
-        Boolean isValidContactAdded = true;
+    private static boolean addContact(AddressBook addressBook, Scanner scanner) {
+        boolean isValidContactAdded = false;
         do {
             try {
                 System.out.print("Enter contact name: ");
@@ -96,12 +98,14 @@ public class AddressBookApp {
                 // Check if contact details are valid
                 addressBook.addContact(new Contact(name, phoneNumber, emailAddress));
                 System.out.println("Contact added successfully.");
+                isValidContactAdded = true;
 
             } catch (Exception e) {
                 System.out.println("Error adding contact: " + e.getMessage());
-                isValidContactAdded = false;
             }
         } while(!isValidContactAdded);
+
+        return true;
     }
 
     private static void searchContactByName(AddressBook addressBook, Scanner scanner) {
