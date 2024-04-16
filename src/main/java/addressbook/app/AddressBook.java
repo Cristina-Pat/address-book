@@ -66,7 +66,7 @@ public class AddressBook {
      * @param contactName the name of the contact to search for
      * @return the contact object if found, otherwise null
      */
-    public Contact searchContact(String contactName) {
+    public Contact searchContactByName(String contactName) {
         return this.contacts.get(contactName);
     }
 
@@ -86,7 +86,7 @@ public class AddressBook {
      * @param newName the new name to be set for the contact
      */
     public void editContactName(String oldName, String newName) {
-        Contact c = this.searchContact(oldName);
+        Contact c = this.searchContactByName(oldName);
         c.setContactName(newName);
         this.contacts.remove(oldName);
         this.contacts.put(newName, c);
@@ -100,7 +100,7 @@ public class AddressBook {
      * @throws DuplicatePhoneNumberException if the new phone number already exists in the address book
      */
     public void editPhoneNumber(String contactName, String newPhoneNumber) throws DuplicatePhoneNumberException {
-        Contact c = this.searchContact(contactName);
+        Contact c = this.searchContactByName(contactName);
         c.setPhoneNumber(newPhoneNumber);
         validateUniquePhoneNumber(contacts.get(contactName));
     }
@@ -113,7 +113,7 @@ public class AddressBook {
      * @throws DuplicateEmailAddressException if the new email address already exists in the address book
      */
     public void editEmailAddress(String contactName, String newEmail) throws DuplicateEmailAddressException {
-        Contact c = this.searchContact(contactName);
+        Contact c = this.searchContactByName(contactName);
         c.setEmailAddress(newEmail);
         validateUniqueEmailAddress(contacts.get(contactName));
     }

@@ -23,7 +23,7 @@ public class AddressBookApp {
 
         // Search for a contact by name (assuming searchContact method is implemented)
         String searchName = "John Doe";
-        Contact foundContact = addressBook.searchContact(searchName);
+        Contact foundContact = addressBook.searchContactByName(searchName);
         if (foundContact != null) {
             System.out.println("Found contact: " + foundContact.getContactName());
             System.out.println("Phone Number: " + foundContact.getPhoneNumber());
@@ -65,10 +65,10 @@ public class AddressBookApp {
                     }
                     break;
                 case 2:
-                    searchContactByName(addressBook, scanner);
+                    searchContact(addressBook, scanner, ContactDetailType.CONTACT_NAME);
                     break;
                 case 3:
-                    searchContactByPhone(addressBook, scanner);
+                    searchContact(addressBook, scanner, ContactDetailType.PHONE_NUMBER);
                     break;
                 case 4:
                     removeContact(addressBook, scanner);
@@ -112,33 +112,40 @@ public class AddressBookApp {
         return true;
     }
 
-    private static void searchContactByName(AddressBook addressBook, Scanner scanner) {
-        System.out.print("Enter contact name to search: ");
-        String searchName = scanner.nextLine();
-        Contact foundContact = addressBook.searchContact(searchName);
+    /**
+     * Searches for a contact in the address book based on the specified contact detail type.
+     *
+     * @param addressBook The address book to search in
+     * @param scanner The scanner object to get user input
+     * @param type The type of contact detail to search for (PHONE_NUMBER or CONTACT_NAME).
+     */
+    private static void searchContact(AddressBook addressBook, Scanner scanner, ContactDetailType type) {
+        String searchDetail = "";
+        Contact foundContact = null;
+
+        switch (type) {
+            case PHONE_NUMBER:
+                System.out.print("Enter phone number to search: ");
+                searchDetail = scanner.nextLine();
+                foundContact = addressBook.searchContactByPhoneNumber(searchDetail);
+                break;
+            case CONTACT_NAME:
+                System.out.print("Enter contact name to search: ");
+                searchDetail = scanner.nextLine();
+                foundContact = addressBook.searchContactByName(searchDetail);
+                break;
+        }
+
         if (foundContact != null) {
             System.out.println("Contact found:");
             System.out.println("Name: " + foundContact.getContactName());
             System.out.println("Phone Number: " + foundContact.getPhoneNumber());
             System.out.println("Email Address: " + foundContact.getEmailAddress());
         } else {
-            System.out.println("Contact not found with name: " + searchName);
+            System.out.println("Contact not found with " + type.name().toLowerCase().replace("_", " ") + ": " + searchDetail);
         }
     }
 
-    private static void searchContactByPhone(AddressBook addressBook, Scanner scanner) {
-        System.out.print("Enter phone number to search: ");
-        String searchPhoneNumber = scanner.nextLine();
-        Contact foundContact = addressBook.searchContactByPhoneNumber(searchPhoneNumber);
-        if (foundContact != null) {
-            System.out.println("Contact found:");
-            System.out.println("Name: " + foundContact.getContactName());
-            System.out.println("Phone Number: " + foundContact.getPhoneNumber());
-            System.out.println("Email Address: " + foundContact.getEmailAddress());
-        } else {
-            System.out.println("Contact not found with phone number: " + searchPhoneNumber);
-        }
-    }
 
     private static void removeContact(AddressBook addressBook, Scanner scanner) {
         System.out.print("Enter contact name to remove: ");
