@@ -168,4 +168,19 @@ public class AddressBook {
         }
         return null;
     }
+
+    /**
+     * Searches for a contact in the address book by the provided email address.
+     *
+     * @param emailAddress The email address to search for
+     * @return The contact object if found, or null if no contact matches the provided email address
+     */
+    public Contact searchContactByEmailAddress(String emailAddress) {
+        for (Contact contact : contacts.values()) {
+            if (contact.getEmailAddress().equals(emailAddress)) {
+                return contact;
+            }
+        }
+        return null;
+    }
 }

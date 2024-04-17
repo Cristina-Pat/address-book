@@ -50,9 +50,10 @@ public class AddressBookApp {
             System.out.println("1. Add contact");
             System.out.println("2. Search contact by name");
             System.out.println("3. Search contact by phone number");
-            System.out.println("4. Remove contact");
-            System.out.println("5. View all contacts");
-            System.out.println("6. Exit");
+            System.out.println("4. Search contact by email address");
+            System.out.println("5. Remove contact");
+            System.out.println("6. View all contacts");
+            System.out.println("7. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -71,12 +72,15 @@ public class AddressBookApp {
                     searchContact(addressBook, scanner, ContactDetailType.PHONE_NUMBER);
                     break;
                 case 4:
-                    removeContact(addressBook, scanner);
+                    searchContact(addressBook, scanner, ContactDetailType.EMAIL_ADDRESS);
                     break;
                 case 5:
-                    viewAllContacts(addressBook);
+                    removeContact(addressBook, scanner);
                     break;
                 case 6:
+                    viewAllContacts(addressBook);
+                    break;
+                case 7:
                     System.out.println("Exiting Address Book Application.");
                     scanner.close();
                     System.exit(0);
@@ -117,7 +121,7 @@ public class AddressBookApp {
      *
      * @param addressBook The address book to search in
      * @param scanner The scanner object to get user input
-     * @param type The type of contact detail to search for (PHONE_NUMBER or CONTACT_NAME).
+     * @param type The type of contact detail to search for (PHONE_NUMBER, CONTACT_NAME or EMAIL_ADDRESS).
      */
     private static void searchContact(AddressBook addressBook, Scanner scanner, ContactDetailType type) {
         String searchDetail = "";
@@ -133,6 +137,11 @@ public class AddressBookApp {
                 System.out.print("Enter contact name to search: ");
                 searchDetail = scanner.nextLine();
                 foundContact = addressBook.searchContactByName(searchDetail);
+                break;
+            case EMAIL_ADDRESS:
+                System.out.print("Enter email address to search: ");
+                searchDetail = scanner.nextLine();
+                foundContact = addressBook.searchContactByEmailAddress(searchDetail);
                 break;
         }
 
