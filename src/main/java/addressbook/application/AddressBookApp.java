@@ -12,6 +12,7 @@ public class AddressBookApp {
         try {
             addressBook.addContact(new Contact("John Doe", "07598254745", "john@example.com"));
             addressBook.addContact(new Contact("Eva Longoria", "07598251234", "eva@example.com"));
+            addressBook.addContact(new Contact("Eva Turner", "07598412000", "eva@hello.com"));
             addressBook.addContact(new Contact("Mary Lin", "07298258549", "mary@example.co.uk"));
         } catch (DuplicatePhoneNumberException | DuplicateEmailAddressException e) {
             System.out.println("Error adding contact: " + e.getMessage());
@@ -21,7 +22,7 @@ public class AddressBookApp {
         addressBook.viewAllContacts();
         System.out.println("=============================");
 
-        // Search for a contact by name (assuming searchContact method is implemented)
+        // Search for a contact by name 
         String searchName = "John Doe";
         Contact foundContact = addressBook.searchContactByName(searchName);
         if (foundContact != null) {
@@ -51,9 +52,11 @@ public class AddressBookApp {
             System.out.println("2. Search contact by name");
             System.out.println("3. Search contact by phone number");
             System.out.println("4. Search contact by email address");
-            System.out.println("5. Remove contact");
-            System.out.println("6. View all contacts");
-            System.out.println("7. Exit");
+            System.out.println("5. Search for a contact by any detail (name, phone number, or email address) and display" +
+                    " the results in alphabetical order");
+            System.out.println("6. Remove contact");
+            System.out.println("7. View all contacts");
+            System.out.println("8. Exit");
             System.out.print("Enter your choice: ");
 
             int choice = scanner.nextInt();
@@ -75,12 +78,15 @@ public class AddressBookApp {
                     searchContact(addressBook, scanner, ContactDetailType.EMAIL_ADDRESS);
                     break;
                 case 5:
-                    removeContact(addressBook, scanner);
+                    searchSortedContacts(addressBook, scanner);
                     break;
                 case 6:
-                    viewAllContacts(addressBook);
+                    removeContact(addressBook, scanner);
                     break;
                 case 7:
+                    viewAllContacts(addressBook);
+                    break;
+                case 8:
                     System.out.println("Exiting Address Book Application.");
                     scanner.close();
                     System.exit(0);
@@ -153,6 +159,19 @@ public class AddressBookApp {
         } else {
             System.out.println("Contact not found with " + type.name().toLowerCase().replace("_", " ") + ": " + searchDetail);
         }
+    }
+
+    /**
+     * Searches for contacts by name, phone number, or email address in the address book and displays them in alphabetical order.
+     *
+     * @param addressBook The address book to search in
+     * @param scanner The scanner object to get user input
+     */
+
+    private static void searchSortedContacts(AddressBook addressBook, Scanner scanner) {
+        System.out.print("Enter name, phone number or email address to search: ");
+        String searchString = scanner.nextLine();
+        addressBook.searchContactsByStringAndDisplayInAlphabeticalOrder(searchString);
     }
 
 

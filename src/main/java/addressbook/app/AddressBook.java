@@ -1,6 +1,6 @@
 package addressbook.app;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.*;
+
 /**
  * Represents an address book that stores contacts. Users can add, edit, search for, and remove contacts.
  * The application prevents duplicates phone numbers and email address.
@@ -117,18 +117,7 @@ public class AddressBook {
         c.setEmailAddress(newEmail);
         validateUniqueEmailAddress(contacts.get(contactName));
     }
-    // initial method
-//    public void viewAllContacts() {
-//        System.out.println("All Contacts:");
-//        for (HashMap.Entry<String, Contact> aContact : contacts.entrySet()) {
-//            Contact contact = aContact.getValue();
-//            System.out.println("Name: " + contact.getContactName());
-//            System.out.println("Phone Number: " + contact.getPhoneNumber());
-//            System.out.println("Email Address: " + contact.getEmailAddress());
-//            System.out.println();
-//        }
-//    }
-    // new method
+
     /**
      * View all contacts in the address book.
      * Prints each contact's details using ContactHelpers.formatContact().
@@ -182,5 +171,29 @@ public class AddressBook {
             }
         }
         return null;
+    }
+
+    /**
+     * Searches for contacts by name, phone number, or email address in the address book and displays them in alphabetical order.
+     *
+     * @param searchString the name, phone number, or email address to search for
+     */
+    public void searchContactsByStringAndDisplayInAlphabeticalOrder(String searchString) {
+        List<Contact> foundContacts = new ArrayList<>();
+
+        for (Map.Entry<String, Contact> entry : contacts.entrySet()) {
+            Contact contact = entry.getValue();
+            if (contact.getContactName().contains(searchString) || contact.getPhoneNumber().contains(searchString) || contact.getEmailAddress().contains(searchString)) {
+                foundContacts.add(contact);
+            }
+            //System.out.println(foundContacts.size());
+        }
+
+        Collections.sort(foundContacts, Comparator.comparing(Contact::getContactName));
+
+        for (Contact contact : foundContacts) {
+            String formattedContact = ContactHelpers.formatContact(contact);
+            System.out.println(formattedContact);
+        }
     }
 }
