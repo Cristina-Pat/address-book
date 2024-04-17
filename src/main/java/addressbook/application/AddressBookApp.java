@@ -22,7 +22,7 @@ public class AddressBookApp {
         addressBook.viewAllContacts();
         System.out.println("=============================");
 
-        // Search for a contact by name 
+        // Search for a contact by name
         String searchName = "John Doe";
         Contact foundContact = addressBook.searchContactByName(searchName);
         if (foundContact != null) {
@@ -49,15 +49,16 @@ public class AddressBookApp {
         while (true) {
             System.out.println("\nAddress Book Application");
             System.out.println("1. Add contact");
-            System.out.println("2. Search contact by name");
-            System.out.println("3. Search contact by phone number");
-            System.out.println("4. Search contact by email address");
-            System.out.println("5. Search for a contact by any detail (name, phone number, or email address) and display" +
-                    " the results in alphabetical order");
-            System.out.println("6. Remove contact");
-            System.out.println("7. View all contacts");
-            System.out.println("8. Exit");
+//            System.out.println("2. Search contact by name");
+//            System.out.println("3. Search contact by phone number");
+//            System.out.println("4. Search contact by email address");
+            System.out.println("2. Search for a contact by any detail (name, phone number, or email address)");
+            System.out.println("3. Remove contact");
+            System.out.println("4. View all contacts");
+            System.out.println("5. Delete all contacts");
+            System.out.println("6. Exit");
             System.out.print("Enter your choice: ");
+            System.out.println();
 
             int choice = scanner.nextInt();
             scanner.nextLine(); // Consume newline character
@@ -68,25 +69,28 @@ public class AddressBookApp {
                         continue;
                     }
                     break;
+//                case 2:
+//                    searchContact(addressBook, scanner, ContactDetailType.CONTACT_NAME);
+//                    break;
+//                case 3:
+//                    searchContact(addressBook, scanner, ContactDetailType.PHONE_NUMBER);
+//                    break;
+//                case 4:
+//                    searchContact(addressBook, scanner, ContactDetailType.EMAIL_ADDRESS);
+//                    break;
                 case 2:
-                    searchContact(addressBook, scanner, ContactDetailType.CONTACT_NAME);
-                    break;
-                case 3:
-                    searchContact(addressBook, scanner, ContactDetailType.PHONE_NUMBER);
-                    break;
-                case 4:
-                    searchContact(addressBook, scanner, ContactDetailType.EMAIL_ADDRESS);
-                    break;
-                case 5:
                     searchSortedContacts(addressBook, scanner);
                     break;
-                case 6:
+                case 3:
                     removeContact(addressBook, scanner);
                     break;
-                case 7:
+                case 4:
                     viewAllContacts(addressBook);
                     break;
-                case 8:
+                case 5:
+                    // insert delete all contacts
+                    break;
+                case 6:
                     System.out.println("Exiting Address Book Application.");
                     scanner.close();
                     System.exit(0);
