@@ -125,7 +125,6 @@ public class AddressBook {
      */
     public void viewAllContacts() {
         if (isContactListEmpty()) System.out.println("No contacts");
-        System.out.println("All Contacts:");
         for (HashMap.Entry<String, Contact> aContact : contacts.entrySet()) {
             Contact contact = aContact.getValue();
             String formattedContact = ContactHelpers.formatContact(contact);
@@ -195,5 +194,12 @@ public class AddressBook {
             String formattedContact = ContactHelpers.formatContact(contact);
             System.out.println(formattedContact);
         }
+    }
+
+    /**
+     * Deletes all contacts from the address book.
+     */
+    public void deleteAllContacts() {
+        contacts.clear();
     }
 }

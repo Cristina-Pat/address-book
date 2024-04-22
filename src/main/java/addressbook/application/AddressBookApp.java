@@ -88,7 +88,14 @@ public class AddressBookApp {
                     viewAllContacts(addressBook);
                     break;
                 case 5:
-                    // insert delete all contacts
+                    System.out.println("Are you sure you want to delete all contacts? (yes/no)");
+                    String confirmation = scanner.nextLine();
+                    if (confirmation.equalsIgnoreCase("yes")) {
+                        addressBook.deleteAllContacts();
+                        System.out.println("All contacts deleted successfully.");
+                    } else {
+                        System.out.println("Operation cancelled.");
+                    }
                     break;
                 case 6:
                     System.out.println("Exiting Address Book Application.");
