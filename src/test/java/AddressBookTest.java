@@ -392,6 +392,80 @@ public class AddressBookTest {
             System.setOut(System.out);
         }
     }
-}
 
+    @Nested
+    @DisplayName("Search by Email Address")
+    class SearchByEmailTests {
+        @Test
+        @DisplayName("When the address book is empty, the method should return null")
+        void testEmptyAddressBook() {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+
+            // Act
+            Contact foundContact = addressBook.searchContactByEmailAddress("john.doe@hello.co.uk");
+
+            // Assert
+            assertNull(foundContact);
+        }
+
+        @Test
+        @DisplayName("When the address book contains contacts, but none of them match the email address, the method should return null")
+        void testNoMatchingEmail() {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231", "john.doe@hello.co.uk");
+            AddressBook addressBook = new AddressBook();
+            try {
+                addressBook.addContact(johnDoe);
+            } catch (DuplicatePhoneNumberException | DuplicateEmailAddressException e) {
+                e.printStackTrace();
+            }
+
+            // Act
+            Contact foundContact = addressBook.searchContactByEmailAddress("eva.longoria@gmail.com");
+
+            // Assert
+            assertNull(foundContact);
+        }
+
+        @Test
+        @DisplayName("When the address book contains contacts and one of them matches the email address, the method should return the matching contact")
+        void testMatchingEmail() {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231", "john.doe@hello.co.uk");
+            AddressBook addressBook = new AddressBook();
+            try {
+                addressBook.addContact(johnDoe);
+            } catch (DuplicatePhoneNumberException | DuplicateEmailAddressException e) {
+                e.printStackTrace();
+            }
+
+            // Act
+            Contact foundContact = addressBook.searchContactByEmailAddress("john.doe@hello.co.uk");
+
+            // Assert
+            assertEquals(johnDoe, foundContact);
+        }
+
+        @Test
+        @DisplayName("Adding a contact with an already existing email address throws an error")
+        void testAddContactWithDuplicateEmailAddress() {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231", "john.doe@hello.co.uk");
+            AddressBook addressBook = new AddressBook();
+            try {
+                addressBook.addContact(johnDoe);
+            } catch (DuplicatePhoneNumberException | DuplicateEmailAddressException e) {
+                e.printStackTrace();
+            }
+
+            // Act
+            Contact evaLongoria = new Contact("Eva Longoria", "07894561242", "john.doe@hello.co.uk");
+
+            // Assert
+            assertThrows(DuplicateEmailAddressException.class, () -> addressBook.addContact(evaLongoria));
+        }
+    }
+
+}
 
