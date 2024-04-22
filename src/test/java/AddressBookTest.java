@@ -467,5 +467,40 @@ public class AddressBookTest {
         }
     }
 
+    @Nested
+    @DisplayName("Delete All Contacts Tests")
+    class DeleteAllContactsTests {
+
+        @Test
+        @DisplayName("When the address book contains contacts, after calling deleteAllContacts, the address book should be empty")
+        void testDeleteAllContacts() throws Exception {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231", "john.doe@hello.co.uk");
+            Contact evaLongoria = new Contact("Eva Longoria", "07259634825", "eva.longoria@gmail.com");
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
+            addressBook.addContact(evaLongoria);
+
+            // Act
+            addressBook.deleteAllContacts();
+
+            // Assert
+            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+            addressBook.viewAllContacts();
+            assertEquals("No contacts" + System.lineSeparator(), outContent.toString());
+        }
+
+        @Test
+        @DisplayName("When the address book is already empty, calling deleteAllContacts should not throw any exceptions")
+        void testDeleteAllContactsOnEmptyAddressBook() {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+
+            // Act and Assert
+            assertDoesNotThrow(() -> addressBook.deleteAllContacts());
+        }
+    }
+
 }
 
