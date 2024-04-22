@@ -43,7 +43,7 @@ public class AddressBookTest {
         addressBook.addContact(johnDoe);
 
         // Act
-        Contact actualOutput = addressBook.searchContact("John Doe");
+        Contact actualOutput = addressBook.searchContactByName("John Doe");
         // Assert
         assertEquals(johnDoe, actualOutput);
     }
@@ -112,7 +112,7 @@ public class AddressBookTest {
         // Act
         addressBook.editEmailAddress("Eva Longoria", newEmail);
         // Assert
-        assertEquals(newEmail, addressBook.searchContact("Eva Longoria").getEmailAddress());
+        assertEquals(newEmail, addressBook.searchContactByName("Eva Longoria").getEmailAddress());
     }
 
     @Nested
@@ -253,7 +253,7 @@ public class AddressBookTest {
             System.setOut(new PrintStream(outContent));
 
 
-            String expectedOutput = "All Contacts:" + System.lineSeparator() +
+            String expectedOutput =
                         "Name: John Doe" +System.lineSeparator() +
                         "Phone Number: 07894561231" + System.lineSeparator() +
                         "Email Address: john.doe@hello.co.uk" + System.lineSeparator() +System.lineSeparator() +
@@ -327,6 +327,69 @@ public class AddressBookTest {
 
             // Assert
             if (foundContact == null) System.out.println("No contact found for the provided phone number.");
+        }
+    }
+
+    @Nested
+    @DisplayName("Search Contacts By String And Display In Alphabetical Order")
+    class SearchContactsByStringAndDisplayInAlphabeticalOrderTests {
+        @Test
+        @DisplayName("When the address book is empty, the method should not throw any exceptions")
+        void testEmptyAddressBook() {
+            // Arrange
+            AddressBook addressBook = new AddressBook();
+
+            // Act and Assert
+            assertDoesNotThrow(() -> addressBook.searchContactsByStringAndDisplayInAlphabeticalOrder("John"));
+        }
+
+        @Test
+        @DisplayName("When the address book contains contacts, but none of them match the search string, the method should not print any contacts")
+        void testNoMatchingContacts() throws Exception {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231", "john.doe@hello.co.uk");
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
+
+            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+
+            // Act
+            addressBook.searchContactsByStringAndDisplayInAlphabeticalOrder("Eva");
+
+            // Assert
+            assertEquals("", outContent.toString());
+
+            // Clear
+            System.setOut(System.out);
+        }
+
+        @Test
+        @DisplayName("When the address book contains contacts and some of them match the search string, the method should print the matching contacts in alphabetical order")
+        void testMatchingContacts() throws Exception {
+            // Arrange
+            Contact johnDoe = new Contact("John Doe", "07894561231", "john.doe@hello.co.uk");
+            Contact evaLongoria = new Contact("Eva Longoria", "07259634825", "eva.longoria@gmail.com");
+            AddressBook addressBook = new AddressBook();
+            addressBook.addContact(johnDoe);
+            addressBook.addContact(evaLongoria);
+
+            ByteArrayOutputStream outContent = new ByteArrayOutputStream();
+            System.setOut(new PrintStream(outContent));
+
+            String expectedOutput =
+                    "Name: Eva Longoria" + System.lineSeparator() +
+                            "Phone Number: 07259634825" + System.lineSeparator() +
+                            "Email Address: eva.longoria@gmail.com" + System.lineSeparator() + System.lineSeparator();
+
+            // Act
+            addressBook.searchContactsByStringAndDisplayInAlphabeticalOrder("Eva");
+
+            // Assert
+            assertEquals(expectedOutput, outContent.toString());
+
+            // Clear
+            System.setOut(System.out);
         }
     }
 }
